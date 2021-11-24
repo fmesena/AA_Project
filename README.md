@@ -1,7 +1,7 @@
 # Approximation Algorithms
 
 This the repository for the project of the Advanced Algorithms course.
-The main idea of the project was to conduct an experimental evaluation of three different approximation algorithms for computing metrics in very big graphs. We have chosen the following metrics: Average Path Length, Betweenness centrality, and Clustering Coefficient.
+The main idea of the project was to conduct an experimental evaluation of three different approximation algorithms for computing metrics in very big graphs. We have chosen the following metrics: Average Path Length, Betweenness centrality, and Clustering Coefficient. This is joint work with my friends, Diogo Ramalho, Joana Alves, and Tomás Vieira.
 
 For the APL, we implemented the Hyperanf approximation algorithm developed by Paolo Boldi, Marco Rosa, and Sebastiano Vigna in "Hyperanf: Approximating the neighbourhood function of very large graphs on a budget", which heavily relies on the well known cardinality estimation technique developed by Flajolet et al in "Hyperloglog: The analysis of a near-optimal cardinality estimation algorithm".
 
