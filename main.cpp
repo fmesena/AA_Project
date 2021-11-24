@@ -23,10 +23,11 @@ bool flag = true;
 // ------------------ UTILS ------------------
 
 void printGraph(int *n, int *o) {
+	cout << "Printing graph\n";
 	for (int i = 0; i < M; ++i)   cout << n[i] << " ";
 	cout << "\n";
 	for (int i = 0; i < N+1; ++i) cout << o[i]    << " ";
-	cout << "\n";
+	cout << endl;
 }
 
 void ER_Generator(double p) {
@@ -53,10 +54,6 @@ void ER_Generator(double p) {
 				}	
 	}
 	offset[N] = neighbour.size();
-	for (int i = 0; i < neighbour.size(); ++i) cout << neighbour[i] << " ";
-	cout << "\n";
-	for (int i = 0; i < N; ++i) cout << offset[i] << " ";
-	cout << "\n";
 }
 
 //Only works for undirected graphs
@@ -70,7 +67,7 @@ bool IsAdjacent(int u, int v) {
 }
 
 //For directed graphs (or undirected but less efficient)
-bool IsAdjacentd(int u, int v) { // u--->v
+bool IsAdjacentDir(int u, int v) { // u--->v
 	for (int i = offset[u]; i < offset[u+1]; i++) if (neighbour[i] == v) return true;
 	return false;
 }
@@ -93,6 +90,7 @@ void link_selection_model() {
 	pair<int,int> random_edge;
 	srand(time(NULL));
 
+	// number of nodes
 	int nodes = 103;
 
 	for (int i=3; i<nodes; i++) {
@@ -133,8 +131,7 @@ void link_selection_model() {
 }
 
 
-
-void printVec(std::vector< std::vector<unsigned long int> >& vec) {
+void printVec(vector< vector<unsigned long int> >& vec) {
 	for (int i = 0; i < vec.size(); i++) {
 		cout << "Vertex = " << i << " ";
     	for (int j = 0; j < vec[i].size(); j++) {
@@ -145,7 +142,6 @@ void printVec(std::vector< std::vector<unsigned long int> >& vec) {
 	cout << "\n";
 }
 
-
 void printNeighbourhoods(int max_distance, vector<unsigned long int>& N_Function){
 	cout << "\n";
 	for (int i = 0; i < max_distance; i++) 
@@ -154,6 +150,7 @@ void printNeighbourhoods(int max_distance, vector<unsigned long int>& N_Function
 
 
 // ------------------ AVERAGE PATH LEGNTH ------------------
+
 
 long jenkins(long x, long seed) {
 	unsigned long a, b, c;
@@ -212,7 +209,7 @@ double computeAlpha(uint64_t m) {
 }
 
 
-void updateCounter(std::vector< std::vector<int> >& c, std::vector< std::vector<int> >& temp) {
+void updateCounter(vector< vector<int> >& c, vector< vector<int> >& temp) {
 	for(int i = 0; i < temp.size(); i++){
 		int v = temp[i][0];
 		int n = temp[i][1];
@@ -224,7 +221,7 @@ void updateCounter(std::vector< std::vector<int> >& c, std::vector< std::vector<
 }
 
 
-void add(std::vector< std::vector<int> >& c, long v, int b, long seed) {
+void add(vector< vector<int> >& c, long v, int b, long seed) {
 	
 	int64_t x = jenkins(v, seed);
 	int j = static_cast<uint64_t>(x) >> (64-b);
@@ -245,7 +242,7 @@ uint64_t size(vector< vector<int> >& c, uint64_t m, double alpha, long v) {
 }
 
 
-void Union(std::vector< std::vector<int> >& c,  long u, long v, uint64_t m, std::vector< std::vector<int> >& temp) {
+void Union(vector< vector<int> >& c,  long u, long v, uint64_t m, vector< vector<int> >& temp) {
 	vector<int> entry;
 	for(int i=0; i<m; i++){
 		if(c[v][i] > c[u][i]){
@@ -330,8 +327,11 @@ long double APL(int b) {
 
 // ------------------ BETWEENNESS ------------------
 
+
 vector<double> Brandes() {
+
     vector<double> c(N,0);
+    
     for(int s = 0; s < N; s++) 
     {
         // initialization
@@ -610,6 +610,7 @@ double ApproxClusteringNaive(int s) {
 // ------------------ MAIN ------------------
 
 int main() {
+	
 	/* N: number of nodes   ||   M: 2 * number of links   */
 	cin >> N >> M;
 
@@ -644,7 +645,7 @@ int main() {
 	cout << Clustering()    << endl;
 	cout << UniformWedge(3) << endl;          //random sample size
 	cout << ApproxClusteringNaive(4) << endl; //random sample size
-	cout << "\n";
+	cout << endl;
 
 	cout << "BETWEENNESS CENTRALITY\n";
 	vector<double> betweenness_ = Riondato(0,0,0);
@@ -655,11 +656,9 @@ int main() {
 
 	cout << "AVERAGE PATH LENGTH\n";
 	cout << APL(4) << endl; //random value of m
-	cout << "\n";
 
-	cout << "END\n";
+	cout << "\nEND" << endl;
 }
-
 
 
 /*	Modified: 14/03/2021
