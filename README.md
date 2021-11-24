@@ -1,4 +1,4 @@
-# AA_Project
+# Approximation Algorithms
 
 This the repository for the project of the Advanced Algorithms course.
 The main idea of the project was to conduct an experimental evaluation of three different approximation algorithms for computing metrics in very big graphs. We have chosen the following metrics: Average Path Length, Betweenness centrality, and Clustering Coefficient.
